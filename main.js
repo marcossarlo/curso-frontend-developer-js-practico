@@ -10,16 +10,16 @@ burguerMenu.addEventListener('click', toggleMobileMenu);
 
 /* Constantes para el product-detail */
 const menuShoppingCart = document.querySelector('.navbar-shopping-cart');
-const aside = document.querySelector('.product-detail');
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
 menuShoppingCart.addEventListener('click', toggleCartAside);
 
 
 /* Función toggleDesktopMenu() para hacer que aparezca/desaparezca el Desktop Menu -> class="desktop-menu" */
 function toggleDesktopMenu() {
     /* para verificar si aside esta cerrado o no */
-    const isAsideClose = aside.classList.contains('inactive');
+    const isAsideClose = shoppingCartContainer.classList.contains('inactive');
     if (!isAsideClose) {
-        aside.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
 
     /* quita/pone clase .inactive dependiendo de si la tiene o no */
@@ -29,9 +29,9 @@ function toggleDesktopMenu() {
 /* Función toggleMobileMenu() para hacer que aparezca/desaparezca el Mobile Menu -> class="mobile-menu" */
 function toggleMobileMenu() {
     /* verificar si aside esta cerrado o no */
-    const isAsideClose = aside.classList.contains('inactive');
+    const isAsideClose = shoppingCartContainer.classList.contains('inactive');
     if (!isAsideClose) {
-        aside.classList.add('inactive');
+        shoppingCartContainer.classList.add('inactive');
     }
 
     /* quita/pone clase .inactive dependiendo de si la tiene o no */
@@ -47,7 +47,7 @@ function toggleCartAside() {
     }
 
     /* quita/pone clase .inactive dependiendo de si la tiene o no */
-    aside.classList.toggle('inactive');
+    shoppingCartContainer.classList.toggle('inactive');
 }
 
 /* Constante para el Produc List */
@@ -70,6 +70,20 @@ productList.push({
 });
 
 /* maquetando los products */
+/* 
+<div class="product-card">
+    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+    <div class="product-info">
+        <div>
+            <p>$120,00</p>
+            <p>Bike</p>
+        </div>
+        <figure>
+            <img src="./icons/bt_add_to_cart.svg" alt="">
+        </figure>
+    </div>
+</div>
+ */
 function renderProducts(arrProducts) {
     for (product of arrProducts) {
         const productCard = document.createElement('div');
@@ -111,17 +125,3 @@ function renderProducts(arrProducts) {
     }
 }
 renderProducts(productList);
-/* 
-<div class="product-card">
-    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-    <div class="product-info">
-        <div>
-            <p>$120,00</p>
-            <p>Bike</p>
-        </div>
-        <figure>
-            <img src="./icons/bt_add_to_cart.svg" alt="">
-        </figure>
-    </div>
-</div>
- */
