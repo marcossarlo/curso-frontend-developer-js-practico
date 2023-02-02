@@ -317,6 +317,7 @@ aside {
 }
 .product-card {
   width: 240px;
+  cursor: pointer;
 }
 .product-card img {
   width: 240px;

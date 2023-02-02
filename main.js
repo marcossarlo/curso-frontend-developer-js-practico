@@ -13,6 +13,9 @@ const menuShoppingCart = document.querySelector('.navbar-shopping-cart');
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
 menuShoppingCart.addEventListener('click', toggleCartAside);
 
+const productDetailContainer = document.querySelector('#productDetail');
+const productDetailCloseIcon = document.querySelector('.product-detail-close');
+productDetailCloseIcon.addEventListener('click', closeProductDetailAside);
 
 /* Función toggleDesktopMenu() para hacer que aparezca/desaparezca el Desktop Menu -> class="desktop-menu" */
 function toggleDesktopMenu() {
@@ -34,6 +37,8 @@ function toggleMobileMenu() {
         shoppingCartContainer.classList.add('inactive');
     }
 
+    closeProductDetailAside();
+
     /* quita/pone clase .inactive dependiendo de si la tiene o no */
     mobileMenu.classList.toggle('inactive');
 }
@@ -46,8 +51,24 @@ function toggleCartAside() {
         mobileMenu.classList.add('inactive');
     }
 
+    const isProductDetailContainerClose = productDetailContainer.classList.contains('inactive');
+    if (!isProductDetailContainerClose) {
+        productDetailContainer.classList.add('inactive');
+    }
+
     /* quita/pone clase .inactive dependiendo de si la tiene o no */
-    shoppingCartContainer.classList.toggle('inactive');
+    shoppingCartContainer.classList.toggle('inactive');    
+}
+
+/* Función para darle que aparezca el aside productDetail al dar clic en una imagen de producto */
+function openProductDetailAside() {
+    /* cerrar  shoppingCartContainer */
+    shoppingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.remove('inactive');
+}
+
+function closeProductDetailAside() {
+    productDetailContainer.classList.add('inactive');
 }
 
 /* Constante para el Produc List */
@@ -94,6 +115,8 @@ function renderProducts(arrProducts) {
         productImg.setAttribute('src', product.image);
         productImg.setAttribute('alt', product.name);
         productImg.setAttribute('title', product.name);
+        /* abrir el aside ProductDetail al darle clic en la imagen */
+        productImg.addEventListener('click', openProductDetailAside);
     
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
